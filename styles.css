@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 200px 40px auto 40px;
+  grid-template-rows: 50px repeat(5, 1fr);
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background-color: #EFEFEF;
+}
+
+header {
+  grid-row: 1;
+  grid-column: 2 / span 3;
+  background-color: #4285F4;
+}
+
+h1 {
+  margin: auto;
+}
+
+h3 {
+  margin: 0px;
+}
+/*=======================================
+>>>>>>>>  aside  <<<<<<<<
+========================================*/
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-row: 1 / span 6;
+  grid-column: 1;
+  border-right: 2px solid darkgrey;
+  background-color: white;
+}
+
+.nav .subgrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 50px 50px repeat(5, 1fr);
+  grid-gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.nav form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid darkgrey;
+  grid-row: 2;
+}
+
+.dropdown {
+  width: 75%;
+}
+
+.dropdown .newbtn {
+  height: 30px;
+  width: 100%;
+  background: #4285F4;
+  border: none;
+  border-radius: 2px;
+  font-size: 15px;
+  color: white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown .newbtn:hover {
+  cursor: pointer;
+}
+
+/*#folders:focus,
+.folder-select:focus
+ {
+  display: flex;
+}*/
+
+.url-submit {
+  display: flex;
+  align-items: center;
+}
+
+.url-submit #url,
+.folder-select input {
+  height: 35px;
+  width: 200px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  margin: 5px;
+}
+
+.url-submit #url:focus,
+.folder-select input:focus{
+  border: 2px solid #4285F4;
+}
+
+.url-submit #url:hover,
+.folder-select input:hover {
+  cursor: pointer;
+  border: 2px solid #4285F4;
+}
+
+.url-submit #add {
+  height: 35px;
+  width: 100px;
+  border-radius: 3px;
+  border: none;
+  margin: 0 10px 0 10px;
+  background-color: #EEEEEE;
+  font-size: 16px;
+  color: #272727;
+}
+
+.url-submit #add:hover{
+  cursor: pointer;
+  background-color: #5d5c5c;
+  color: white;
+}
+
+.folder-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1;
+  grid-row: 3;
+  height: 100px;
+  width: 100%;
+}
+
+.folder-filter {
+  border-bottom: 1px solid darkgrey;
+}
+
+.folder-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.folder-select img,
+.url-submit img {
+  width: 20px;
+}
+
+.folder-menu {
+  border-bottom: 1px solid darkgrey;
+}
+
+.folder-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.folder-dropdown select {
+  outline: none;
+  margin: 0 10px 0 10px;
+  width: 150px;
+  height: 25px;
+}
+
+.folder-dropdown select:hover {
+  cursor: pointer;
+  border: 2px solid #4285F4;
+  outline: none;
+}
+
+.folder-dropdown img {
+  display: flex;
+  flex-direction: row;
+  width: 20px;
+  height: 20px;
+}
+
+/*=======================================
+>>>>>>>>  cards  <<<<<<<<
+========================================*/
+
+.cards {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 175px;
+  width: 200px;
+  /*border: 1px solid blue;*/
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.card h2 {
+  font-size: 20px;
+  overflow: hidden;
+}
+
+.card:hover{
+  cursor: pointer;
+}
