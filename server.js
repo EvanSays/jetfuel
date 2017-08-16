@@ -9,7 +9,12 @@ const database = require('knex')(configuration);
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'jetfuel';
 app.use(bodyParser.json());
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html')
+})
 
 app.route('/api/v1/folders')
   .get((req, res) => {
@@ -61,7 +66,7 @@ app.route('/api/v1/links')
 
 
 app.get('/api/v1/folders/:id', (req, res) => {
-  database('folders').where('id', req.params.folder_id).select()
+  database('folders').where('id', req.params.id).select()
     .then(folders => {
       if (folders.length) {
         res.status(200).json(folders);
