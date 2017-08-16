@@ -10,11 +10,10 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('links', function(jetfuel) {
       jetfuel.increments('id').primary();
       jetfuel.string('name');
-      jetfuel.string('orig_url');
+      jetfuel.string('orig_url').unique();
       jetfuel.string('short_url');
       jetfuel.integer('folder_id').unsigned();
-      jetfuel.foreign('folder_id')
-        .references('folders.id');
+      jetfuel.foreign('folder_id').references('folders.id');
 
       jetfuel.timestamps(true, true);
     })
