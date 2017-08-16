@@ -90,12 +90,6 @@ aside {
   cursor: pointer;
 }
 
-/*#folders:focus,
-.folder-select:focus
- {
-  display: flex;
-}*/
-
 .url-submit {
   display: flex;
   align-items: center;

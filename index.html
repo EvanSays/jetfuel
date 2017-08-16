@@ -28,7 +28,7 @@
             </div>
             <div class="folder-select">
               <img src="./assets/folder-icon.svg" alt="folder icon">
-              <input list="folders" name="myFolder">
+              <input id="add-folder" list="folders" name="myFolder" value="Create a folder">
               <datalist id="folders">
                 <option value="Chrome">
                 <option value="Firefox">
@@ -37,6 +37,10 @@
                 <option value="Safari">
                 <option value="Microsoft Edge">
               </datalist>
+              <!-- <select name="select">
+                <option value="Folder" selected>Select a folder</option>
+                <option value="value2">Recipes</option>
+              </select> -->
             </div>
           </div>
         </div>
@@ -45,9 +49,8 @@
         <div class="folder-dropdown">
           <img src="./assets/folder-icon.png" alt="folder icon">
         <select name="select">
-          <option value="Folder">Folders</option>
-          <option value="value2" selected>Value 2</option>
-          <option value="value3">Value 3</option>
+          <option value="Folder" selected>Select a folder</option>
+          <option value="value2">Recipes</option>
         </select>
       </div>
       </div>
