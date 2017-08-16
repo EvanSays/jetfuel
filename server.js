@@ -57,24 +57,34 @@ app.route('/api/v1/links')
     .catch(error => {
       res.status(500).json( {error} )
     })
-  })
+  });
 
 
+app.get('/api/v1/folders/:id', (req, res) => {
+  database('folders').where('id', req.params.folder_id).select()
+    .then(folders => {
+      if (folders.length) {
+        res.status(200).json(folders);
+      } else {
+        res.status(404).json({
+          error: `Could not find folder with id of ${req.params.id}`
+        })
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
 
-// app.route('/api/v1/links')
-//   .post((req, res) => {
-//     const id = Date.now()
-//           birth = Date.now();
-//
-//     const { name, origUrl, shortUrl, folderId } = req.body
-//
-//     if(!name || !origUrl || !shortUrl) {
-//       return res.status(422).send('Missing information in body')
-//     }
-//     res.status(201).json({ id, name, origUrl, shortUrl, birth, folderId})
-//   })
-//   .get((req, res) => {
-//   })
+app.get('/api/v1/folders/:id/links', (req, res) => {
+  database('links').where('folder_id', req.params.id).select()
+    .then(links => {
+      res.status(200).json(links)
+    })
+    .catch(error => {
+      res.status(500).json({ error })
+    })
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
