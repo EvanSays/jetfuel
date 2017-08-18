@@ -7,8 +7,14 @@ $(function() {
   // postLink();
 })
 
+$('#add-folder').click(() => {
+  $('.folder-select').append('<input id="folder-input" type="text" />')
+
+  // postFolder()
+})
 
 $('#add').click(() => {
+    console.log($('.folder-input').val());
   $(".dropdown-content").toggleClass("show")
   const addSelected = $( "#add-select option:selected" )
   const addSelect = $( "#add-select" )
@@ -20,8 +26,8 @@ $('#add').click(() => {
   if(!folderId) {
     return
   } else  {
-    // postLink(folderId, urlVal)
-    // fetchFolderLinks(folderId)
+    postLink(1, urlVal)
+    fetchFolderLinks(folderId)
 
 
     addSelect.find('option:selected').prop('selected', false)
@@ -115,6 +121,7 @@ const postLink = (folderId, url) => {
 ========================================*/
 
 const setFolders = (array) => {
+  // console.log('setting folders');
   array.forEach(folder => {
     $('#select, #add-select').append(`
       <option
