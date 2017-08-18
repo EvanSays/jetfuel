@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgress://localhost/jetfuel',
+    connection: process.env.'postgres://zuiqekxgtfbndy:085cf5a9dd113e982f73e2fb2e0574fffd2989176e10af560b38a99365d58ce4@ec2-54-221-205-186.compute-1.amazonaws.com:5432/d6hoaqj5v7ogop' + `?ssl=true`,
     useNullAsDefault: true,
     migrations: {
       directory: './db/migrations'
