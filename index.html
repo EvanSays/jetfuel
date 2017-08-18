@@ -19,28 +19,20 @@
       <h1>JETFUEL</h1>
       <form class="details" action="index.html" method="post">
         <div class="dropdown">
-          <button class="newbtn" type="button" name="button">NEW</button>
+          <button id="newbtn" type="button" name="button">NEW</button>
           <div class="dropdown-content">
             <div class="url-submit">
-              <img src="./assets/star-icon.svg" alt="star icon">
-              <input id="url" type="text" name="URL" value="URL">
+              <!-- <img src="./assets/star-icon.svg" alt="star icon"> -->
+              <input id="url" type="text" name="URL" value="Paste a link to shorten it">
               <button id="add" type="button" name="button">Add</button>
             </div>
             <div class="folder-select">
-              <img src="./assets/folder-icon.svg" alt="folder icon">
-              <input id="add-folder" list="folders" name="myFolder" value="Create a folder">
-              <datalist id="folders">
-                <option value="Chrome">
-                <option value="Firefox">
-                <option value="Internet Explorer">
-                <option value="Opera">
-                <option value="Safari">
-                <option value="Microsoft Edge">
-              </datalist>
-              <!-- <select name="select">
-                <option value="Folder" selected>Select a folder</option>
-                <option value="value2">Recipes</option>
-              </select> -->
+              <!-- <img src="./assets/folder-icon.svg" alt="folder icon">
+              <input id="add-folder" list="datalist" name="myFolder" value="Create a folder">
+              <datalist id="datalist"></datalist> -->
+              <select id="add-select" name="select">
+                <option value="Folder">select a folder</option>
+              </select>
             </div>
           </div>
         </div>
@@ -49,50 +41,13 @@
         <div class="folder-dropdown">
           <img src="./assets/folder-icon.png" alt="folder icon">
         <select id="select" name="select">
-          <option value="Folder" selected>select a folder</option>
+          <option value="Folder">select a folder</option>
         </select>
       </div>
       </div>
     </div>
   </aside>
-  <section class="cards">
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com/hes/the.best.dog</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-    <div class="card">
-      <h2>www.gucci.com</h2>
-    </div>
-  </section>
+  <section class="cards"></section>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="main.js"></script>

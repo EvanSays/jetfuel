@@ -1,11 +1,60 @@
 $(function() {
-  //fetchLinks();
   fetchFolders();
+  fetchLinks();
   // fetchFolderId();
   // fetchFolderLinks();
   // postFolder();
   // postLink();
 })
+
+
+$('#add').click(() => {
+  $(".dropdown-content").toggleClass("show")
+  const addSelected = $( "#add-select option:selected" )
+  const addSelect = $( "#add-select" )
+  const select = $( "#select" )
+
+  const folderId = addSelected[0].dataset.id
+  const urlVal = $('#url').val()
+
+  if(!folderId) {
+    return
+  } else  {
+    // postLink(folderId, urlVal)
+    // fetchFolderLinks(folderId)
+
+
+    addSelect.find('option:selected').prop('selected', false)
+    select.find('option:selected').prop('selected', false)
+    // console.log(addSelect.find('option:selected'),select.find('option:selected') );
+    // console.log(addSelected);
+    // console.log(addSelect.children(), select.children());
+    //select dropdown and change
+  }
+})
+
+$('#add-folder').click((e) => {
+  $(e.target).val('')
+})
+
+$('#url').click((e) => {
+  $(e.target).val('')
+})
+
+$('#newbtn').click(() => {
+  $(".dropdown-content").toggleClass("show")
+})
+
+$('select').change(() => {
+  const selection = $( "#select option:selected" )
+  const folderData = selection[0].dataset
+  !folderData.id ? fetchLinks() : fetchFolderLinks(folderData.id)
+})
+
+
+/*=======================================
+>>>>>>>>  Fetch  <<<<<<<<
+========================================*/
 
 const fetchFolders = () => {
   fetch('/api/v1/folders')
@@ -14,17 +63,10 @@ const fetchFolders = () => {
   .catch(error => console.log(error))
 }
 
-const setFolders = (array) => {
-  array.forEach(folder => {
-    // console.log(folder)
-    $('#select').append(`<option value="${folder.id}" >${folder.name}</option>`)
-  })
-}
-
 const fetchLinks = () => {
   fetch('/api/v1/links')
   .then(res => res.json())
-  .then(links => console.log('links', links))
+  .then(links => setLinks(links))
   .catch(error => console.log(error))
 }
 
@@ -35,12 +77,16 @@ const fetchFolderId = () => {
   .catch(error => console.log(error))
 }
 
-const fetchFolderLinks = () => {
-  fetch('/api/v1/folders/1/links')
+const fetchFolderLinks = (id) => {
+  fetch(`/api/v1/folders/${id}/links`)
   .then(res => res.json())
-  .then(folderLinks => console.log('folderLinks', folderLinks))
+  .then(folderLinks => setLinks(folderLinks))
   .catch(error => console.log(error))
 }
+
+/*=======================================
+>>>>>>>>  Post  <<<<<<<<
+========================================*/
 
 const postFolder = () => {
   fetch('/api/v1/folders', {
@@ -51,29 +97,58 @@ const postFolder = () => {
   .then(res => console.log(res))
 }
 
-const postLink = () => {
+const postLink = (folderId, url) => {
   fetch('/api/v1/links', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ 'name': 'Blink 182',
-                           'orig_url': 'http://blinkliveshere.com/tom/aliens',
+    body: JSON.stringify({ 'name': 'name',
+                           'orig_url': url,
                            'short_url': 'http://blink182.com/iAighG',
-                           'folder_id': 2
+                           'folder_id': folderId
                          })
   })
   .then(res => console.log(res))
 }
 
-$('#add').click(() => {
-  let urlVal = $('#url').val()
-  let folderVal = $('#add-folder').val()
-  $('#url').val("URL")
-})
+/*=======================================
+>>>>>>>>  Set  <<<<<<<<
+========================================*/
 
-$('#add-folder').click((e) => {
-  $(e.target).val('')
-})
+const setFolders = (array) => {
+  array.forEach(folder => {
+    $('#select, #add-select').append(`
+      <option
+        data-id="${folder.id}"
+        data-name="${folder.name}"
+        data-created-at="${folder.created_at}">
+        ${folder.name}
+      </option>
+    `)
+  })
+}
 
-$('#url').click((e) => {
-  $(e.target).val('')
+const setLinks = (array) => {
+  const cards = $('.cards')
+  cards.empty()
+  array.forEach(link => {
+    cards.append(`
+      <div
+        id="cardsss"
+        class="card"
+        data-id=${link.id}
+        data-created-at=${link.created_at}
+        data-folder-id=${link.folder_id}
+        data-orig-url=${link.orig_url}
+        data-short-url=${link.short_url}>
+        <h2>${link.name}</h2>
+      </div>
+    `)
+  })
+}
+
+
+
+
+$(".cards").on('click', '.card', (e) =>  {
+  console.log(e.target);
 })
