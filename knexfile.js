@@ -10,16 +10,16 @@ module.exports = {
       directory: './db/migrations'
     },
     seeds: {
-      directory:'./db/seeds/dev'
+      directory: './db/seeds/dev'
     },
-    useNullAsDefault: true,
+    useNullAsDefault: true
   },
 
   staging: {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -32,12 +32,24 @@ module.exports = {
   },
 
   production: {
-  client: 'pg',
-  connection: process.env.DATABASE_URL + `?ssl=true`,
-  migrations: {
-    directory: './db/migrations'
+    client: 'pg',
+    connection: process.env.DATABASE_URL + `?ssl=true`,
+    migrations: {
+      directory: './db/migrations'
+    },
+    useNullAsDefault: true
   },
-  useNullAsDefault: true
-}
+
+  test: {
+    client: 'pg',
+    connection: process.env.DATABASE_URL || 'postgres://localhost/jetfueltest',
+    useNullAsDefault: true,
+    migrations: {
+      directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/test/seeds'
+    }
+  }
 
 };
