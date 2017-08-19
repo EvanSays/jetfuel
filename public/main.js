@@ -8,38 +8,33 @@ $(function() {
 })
 
 $('#add-folder').click(() => {
-  $('.folder-select').append('<input id="folder-input" type="text" />')
 
-  // postFolder()
 })
 
 $('#add').click(() => {
-    console.log($('.folder-input').val());
-  $(".dropdown-content").toggleClass("show")
   const addSelected = $( "#add-select option:selected" )
-  const addSelect = $( "#add-select" )
-  const select = $( "#select" )
+  const url = $( "#url" )
+  const dropdown = $( "#dropdown2" )
+  const name = $( "#name" )
 
-  const folderId = addSelected[0].dataset.id
-  const urlVal = $('#url').val()
+  const dropdownInner = dropdown[0].innerText
 
-  if(!folderId) {
-    return
-  } else  {
-    postLink(1, urlVal)
-    fetchFolderLinks(folderId)
+  const urlDefualt = "Paste a link to shorten it"
+  const nameDefault = "Name"
+  const dropdownDefault = "Select A Folder"
 
+  if(url.val() != urlDefualt &&
+    name.val() != nameDefault &&
+    dropdownInner != dropdownDefault &&
+    url.val() != '' &&
+    name.val() != '' ){
 
-    addSelect.find('option:selected').prop('selected', false)
-    select.find('option:selected').prop('selected', false)
-    // console.log(addSelect.find('option:selected'),select.find('option:selected') );
-    // console.log(addSelected);
-    // console.log(addSelect.children(), select.children());
-    //select dropdown and change
+    console.log(url.val(), name.val(), 'dropdown', dropdown);
+    $(".dropdown-content").toggleClass("show")
   }
 })
 
-$('#add-folder').click((e) => {
+$('#name').click((e) => {
   $(e.target).val('')
 })
 
@@ -51,12 +46,27 @@ $('#newbtn').click(() => {
   $(".dropdown-content").toggleClass("show")
 })
 
+$('#dropdown2').click((e) => {
+  e.preventDefault()
+  $(".dropdown-content2").toggleClass("show")
+})
+
 $('select').change(() => {
   const selection = $( "#select option:selected" )
   const folderData = selection[0].dataset
   !folderData.id ? fetchLinks() : fetchFolderLinks(folderData.id)
 })
 
+$(".cards").on('click', '.card', (e) =>  {
+  console.log(e.target);
+})
+
+$(".folder-select").on('click', 'li', (e) =>  {
+  $(".dropdown-content2").text(e.target.getAttribute('data-id'))
+  $("#dropdown2").attr("data-id", e.target.getAttribute('data-id') )
+  $("#dropdown2").text(e.target.getAttribute('data-name'))
+  fetchFolders();
+})
 
 /*=======================================
 >>>>>>>>  Fetch  <<<<<<<<
@@ -122,8 +132,22 @@ const postLink = (folderId, url) => {
 
 const setFolders = (array) => {
   // console.log('setting folders');
+  $('#dropdown2').prepend(`
+    <ul class="dropdown-content2">
+      <li>Create Folder</li>
+    </ul>
+  `)
+
   array.forEach(folder => {
-    $('#select, #add-select').append(`
+    $('.dropdown-content2').prepend(`
+      <li
+        data-id="${folder.id}"
+        data-name="${folder.name}"
+        data-created-at="${folder.created_at}">
+        ${folder.name}
+      </li>
+    `),
+    $('#select').append(`
       <option
         data-id="${folder.id}"
         data-name="${folder.name}"
@@ -140,7 +164,7 @@ const setLinks = (array) => {
   array.forEach(link => {
     cards.append(`
       <div
-        id="cardsss"
+        id="card"
         class="card"
         data-id=${link.id}
         data-created-at=${link.created_at}
@@ -152,10 +176,3 @@ const setLinks = (array) => {
     `)
   })
 }
-
-
-
-
-$(".cards").on('click', '.card', (e) =>  {
-  console.log(e.target);
-})

@@ -22,17 +22,17 @@
           <button id="newbtn" type="button" name="button">NEW</button>
           <div class="dropdown-content">
             <div class="url-submit">
-              <!-- <img src="./assets/star-icon.svg" alt="star icon"> -->
+
               <input id="url" type="text" name="URL" value="Paste a link to shorten it">
               <button id="add" type="button" name="button">Add</button>
             </div>
             <div class="folder-select">
-              <!-- <input id="add-folder" list="datalist" name="myFolder" value="Create a folder">
-              <datalist id="datalist"></datalist> -->
-              <select id="add-select" name="select">
-                <option value="Folder">select a folder</option>
-              </select>
-              <img id="add-folder" src="./assets/folder-icon.svg" alt="folder icon">
+              <input id="name" type="text" name="name" value="Name">
+
+              <button id="dropdown2" data-id="0">
+                Select A Folder
+              </button>
+
             </div>
           </div>
         </div>
@@ -41,7 +41,8 @@
         <div class="folder-dropdown">
           <img src="./assets/folder-icon.png" alt="folder icon">
         <select id="select" name="select">
-          <option value="Folder">select a folder</option>
+          <option>select a folder</option>
+          <option>all</option>
         </select>
       </div>
       </div>

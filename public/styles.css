@@ -81,12 +81,18 @@ aside {
   padding: 5px;
 }
 
-.show {
-  display: block;
-}
-
 .dropdown #newbtn:hover {
   cursor: pointer;
+}
+
+#name {
+  font-size: 14px;
+  padding-left: 10px;
+  height: 35px;
+  width: 183px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 5px;
 }
 
 .url-submit {
@@ -119,6 +125,64 @@ aside {
   cursor: pointer;
   border: 1px solid #4285F4;
 }
+
+/*input#add-folder {
+  font-size: 14px;
+  padding-left: 10px;
+  height: 35px;
+  width: 195px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 5px;
+}*/
+
+/*=======================================
+>>>>>>>>  dropdown  <<<<<<<<
+========================================*/
+#dropdown2 {
+  height: 35px;
+  width: 200px;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  color: black;
+  border: 1px solid grey;
+  text-align: start;
+  text-transform: capitalize;
+}
+
+.dropdown-content2  {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 5px;
+  left: 219px;
+}
+
+.dropdown-content2 ul {
+  list-style-type: none;
+}
+.dropdown-content2 li {
+  padding: 10px;
+  text-transform: capitalize;
+  list-style: none;
+
+}
+
+#dropdown2:hover,
+.dropdown-content2:hover {
+  cursor: pointer;
+}
+
+.show {
+  display: block;
+}
+/*=======================================
+>>>>>>>>  ^^^^^  <<<<<<<<
+========================================*/
 
 .url-submit #add {
   height: 35px;
