@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const shortid = require('shortid');
 const app = express();
 
 const enviroment = process.env.NODE_ENV || 'development';
@@ -20,6 +21,7 @@ app.route('/api/v1/folders')
   .get((req, res) => {
     database('folders').select()
     .then(folders => {
+
       res.status(200).json(folders)
     })
   })
@@ -49,8 +51,8 @@ app.route('/api/v1/links')
   })
   .post((req, res) => {
     const newLink = req.body;
-
-    for(let requiredParameter of ['name', 'orig_url', 'short_url', 'folder_id']) {
+    newLink.short_url = `http://jetfuelturbo.com/${shortid.generate()}`
+    for(let requiredParameter of ['name', 'orig_url','folder_id']) {
       if(!newLink[requiredParameter]) {
         res.status(422).json({ error: `Missing required parameter ${requiredParameter}`})
       }
