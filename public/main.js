@@ -22,23 +22,22 @@ $('#add').click(() => {
 
   const urlDefualt = "Paste a link to shorten it"
   const nameDefault = "Name"
-  const dropdownDefault = "Select A Folder"
+  const dropdownDefault = "select a folder"
   const createFolderDefault = "Create a folder"
+  const dropdownDefaultData = $("#select1 option:selected")[0].innerText
 
-  const id = dropdown[0].getAttribute('data-id')
+  const folderId = dropdown[0].getAttribute('data-id')
+
 
   if (url.val() != urlDefualt &&
       name.val() != nameDefault &&
-      dropdownInner != dropdownDefault &&
       url.val() != '' &&
-      name.val() != '') {
+      name.val() != '' &&
+      dropdownDefaultData != dropdownDefault ) {
 
-    console.log(url.val(), name.val(), 'dropdown', dropdown[0].getAttribute('data-id'));
+  postLink(name.val(), url.val(), folderId)
+  $(".dropdown-content").toggleClass("show")
 
-    postLink(name.val(), url.val(), id)
-    $(".dropdown-content").toggleClass("show")
-    fetchFolders();
-    fetchLinks();
   }
 })
 
