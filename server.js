@@ -51,7 +51,7 @@ app.route('/api/v1/links')
   })
   .post((req, res) => {
     const newLink = req.body;
-    newLink.short_url = `http://jetfuelturbo.com/${shortid.generate()}`
+    newLink.short_url = `/${shortid.generate()}`
     for(let requiredParameter of ['name', 'orig_url','folder_id']) {
       if(!newLink[requiredParameter]) {
         res.status(422).json({ error: `Missing required parameter ${requiredParameter}`})
@@ -68,7 +68,9 @@ app.route('/api/v1/links')
 
 
 app.get('/api/v1/folders/:id', (req, res) => {
-  database('folders').where('id', req.params.id).select()
+  database('folders')
+  .where('id', req.params.id).
+  select()
     .then(folders => {
       if (folders.length) {
         res.status(200).json(folders);
@@ -84,7 +86,8 @@ app.get('/api/v1/folders/:id', (req, res) => {
 });
 
 app.get('/api/v1/folders/:id/links', (req, res) => {
-  database('links').where('folder_id', req.params.id).select()
+  database('links').where('folder_id', req.params.id)
+  .select()
     .then(links => {
       res.status(200).json(links)
     })
@@ -92,6 +95,17 @@ app.get('/api/v1/folders/:id/links', (req, res) => {
       res.status(500).json({ error })
     })
 });
+
+app.get('/api/v1/links/:id', (req, res) => {
+  database('links').where('id', req.params.id)
+  .select()
+  .then(links => {
+    res.status(302).redirect(links[0].orig_url)
+  })
+  .catch(error => {
+    res.status(500).json({ error })
+  })
+})
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
