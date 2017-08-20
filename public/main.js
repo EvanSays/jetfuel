@@ -10,21 +10,28 @@ $(function() {
 
 $('#add-folder').click(() => {})
 
-$('#add').click(() => {
-  const addSelected = $("#add-select option:selected")
-  const url = $("#url")
-  const dropdown = $("#dropdown2")
-  const name = $("#name")
+$('#select1').change((e)=> {
+  const addSelected = $("#select2 option:selected")
+  console.log(addSelected);
+})
 
-  const dropdownInner = dropdown[0].innerText
+$('#add').click(() => {
+  const url = $("#url")
+  const dropdown = $("#select1 option:selected")
+  const name = $("#name")
 
   const urlDefualt = "Paste a link to shorten it"
   const nameDefault = "Name"
   const dropdownDefault = "Select A Folder"
+  const createFolderDefault = "Create a folder"
 
   const id = dropdown[0].getAttribute('data-id')
 
-  if (url.val() != urlDefualt && name.val() != nameDefault && dropdownInner != dropdownDefault && url.val() != '' && name.val() != '') {
+  if (url.val() != urlDefualt &&
+      name.val() != nameDefault &&
+      dropdownInner != dropdownDefault &&
+      url.val() != '' &&
+      name.val() != '') {
 
     console.log(url.val(), name.val(), 'dropdown', dropdown[0].getAttribute('data-id'));
 
@@ -160,7 +167,7 @@ const setFolders = (array) => {
   <option>select a folder</option>
   <option>create a folder</option>
   `
-  
+
   $('#select2').prepend `
   <option>select a folder</option>
   <option>all</option>

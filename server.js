@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const shortid = require('shortid');
+const validator = require('validator');
 const app = express();
 
 const enviroment = process.env.NODE_ENV || 'development';
@@ -51,7 +52,11 @@ app.route('/api/v1/links')
   })
   .post((req, res) => {
     const newLink = req.body;
-    newLink.short_url = `/${shortid.generate()}`
+
+    if(!validator.isURL(newLink.orig_url)){
+      return res.status(500).json( {error} )
+    }
+
     for(let requiredParameter of ['name', 'orig_url','folder_id']) {
       if(!newLink[requiredParameter]) {
         res.status(422).json({ error: `Missing required parameter ${requiredParameter}`})
