@@ -13,42 +13,53 @@
 
 <body>
   <header>
-  </header>
-  <aside class="nav">
-    <div class="subgrid">
-      <h1>JETFUEL</h1>
+    <div class="title">
+
+      <span class="logo">
+        <h1 class="jetfuel">Jetfuel</h1>
+          <p>|</p>
+          <h1 class="turbo">TURBO</h1>
+      </span>
       <form class="details" action="index.html" method="post">
         <div class="dropdown">
           <button id="newbtn" type="button" name="button">NEW</button>
           <div class="dropdown-content">
             <div class="url-submit">
-
               <input id="url" type="text" name="URL" value="Paste a link to shorten it">
               <button id="add" type="button" name="button">Add</button>
             </div>
             <div class="folder-select">
               <input id="name" type="text" name="name" value="Name">
+              <select id="select1" name="select">
 
-              <button id="dropdown2" data-id="0">
+              </select>
+              <!-- <button id="dropdown2" data-id="0">
                 Select A Folder
-              </button>
-
+              </button> -->
             </div>
           </div>
         </div>
       </form>
-      <div class="folder-menu">
-        <div class="folder-dropdown">
-          <img src="./assets/folder-icon.png" alt="folder icon">
-        <select id="select" name="select">
-          <option>select a folder</option>
-          <option>all</option>
-        </select>
-      </div>
-      </div>
     </div>
-  </aside>
-  <section class="cards"></section>
+  </header>
+  <div class="folder-menu">
+    <div class="folder-dropdown">
+      <img src="./assets/folder-icon.png" alt="folder icon">
+      <select id="select2" name="select">
+
+      </select>
+    </div>
+
+    <select id="sort" name="sort">
+      <option value="true">acending</option>
+      <option value="false">decending</option>
+    </select>
+
+  </div>
+
+  <section class="cards">
+
+  </section>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
