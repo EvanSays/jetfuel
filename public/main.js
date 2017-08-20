@@ -5,6 +5,7 @@ $(function() {
   // fetchFolderLinks();
   // postFolder();
   // postLink();
+  // console.log(shortid.generate())
 })
 
 $('#add-folder').click(() => {
@@ -23,13 +24,17 @@ $('#add').click(() => {
   const nameDefault = "Name"
   const dropdownDefault = "Select A Folder"
 
+  const id = dropdown[0].getAttribute('data-id')
+
   if(url.val() != urlDefualt &&
     name.val() != nameDefault &&
     dropdownInner != dropdownDefault &&
     url.val() != '' &&
     name.val() != '' ){
 
-    console.log(url.val(), name.val(), 'dropdown', dropdown);
+    console.log(url.val(), name.val(), 'dropdown', dropdown[0].getAttribute('data-id'));
+
+    postLink(name.val(), url.val(), id)
     $(".dropdown-content").toggleClass("show")
   }
 })
@@ -40,6 +45,7 @@ $('#name').click((e) => {
 
 $('#url').click((e) => {
   $(e.target).val('')
+
 })
 
 $('#newbtn').click(() => {
@@ -65,7 +71,7 @@ $(".folder-select").on('click', 'li', (e) =>  {
   $(".dropdown-content2").text(e.target.getAttribute('data-id'))
   $("#dropdown2").attr("data-id", e.target.getAttribute('data-id') )
   $("#dropdown2").text(e.target.getAttribute('data-name'))
-  fetchFolders();
+  // fetchFolders();
 })
 
 /*=======================================
@@ -113,13 +119,12 @@ const postFolder = () => {
   .then(res => console.log(res))
 }
 
-const postLink = (folderId, url) => {
+const postLink = (name, url, folderId) => {
   fetch('/api/v1/links', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ 'name': 'name',
+    body: JSON.stringify({ 'name': name,
                            'orig_url': url,
-                           'short_url': 'http://blink182.com/iAighG',
                            'folder_id': folderId
                          })
   })
@@ -131,7 +136,7 @@ const postLink = (folderId, url) => {
 ========================================*/
 
 const setFolders = (array) => {
-  // console.log('setting folders');
+
   $('#dropdown2').prepend(`
     <ul class="dropdown-content2">
       <li>Create Folder</li>
@@ -171,8 +176,16 @@ const setLinks = (array) => {
         data-folder-id=${link.folder_id}
         data-orig-url=${link.orig_url}
         data-short-url=${link.short_url}>
-        <h2>${link.name}</h2>
+        <div class="info">
+          <h2>${link.name}</h2>
+          <h3>${link.short_url}</h3>
+          <h4>${moment(link.created_at)}</h4>
+        </div>
       </div>
     `)
   })
+}
+
+const shortUrl = (url) => {
+  return (url).toString(36)
 }
