@@ -58,7 +58,7 @@ app.route('/api/v1/links')
     }
 
     newLink.short_url = `http://jetfuelturbo.com/${shortid.generate()}`
-    
+
     for(let requiredParameter of ['name', 'orig_url','folder_id']) {
       if(!newLink[requiredParameter]) {
         res.status(422).json({ error: `Missing required parameter ${requiredParameter}`})
@@ -72,7 +72,6 @@ app.route('/api/v1/links')
       res.status(500).json( {error} )
     })
   });
-
 
 app.get('/api/v1/folders/:id', (req, res) => {
   database('folders')
