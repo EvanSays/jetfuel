@@ -46,9 +46,10 @@ $('#add').click(() => {
   postLink(name.val(), url.val(), folderId)
   $(".dropdown-content").toggleClass("show")
 
-  $('.cards').empty()
-  fetchFolders();
-  fetchLinks();
+  setTimeout(() => {
+    $('.cards').empty()
+      fetchLinks();
+    }, 200)
   }
 })
 
@@ -108,10 +109,6 @@ $('#sort').change((e) => {
     fetchFolderLinks(folderSelect.dataset.id, 'false') :
     fetchFolderLinks(folderSelect.dataset.id, 'true')
   }
-})
-
-$(".cards").on('click', '.card', (e) => {
-  console.log(e.target);
 })
 
 $(".folder-select").on('click', 'li', (e) => {
@@ -208,8 +205,6 @@ const setLinks = (array, str='true') => {
 
   const cards = $('.cards')
   cards.empty()
-
-  console.log(sorted);
 
   sorted.forEach(link => {
     if (str === 'true') {

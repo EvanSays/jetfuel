@@ -33,7 +33,6 @@ const createFolder = (knex, folder) => {
   .then(folderId => {
     let linkPromises = [];
     folder.links.forEach(link => {
-      console.log('link', link);
       linkPromises.push(
         createLink(knex, {
           name: link.name,
