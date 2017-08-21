@@ -94,13 +94,30 @@ p {
   cursor: pointer;
 }
 
-#name {
+
+
+#name,
+#new-folder  {
   font-size: 14px;
   padding-left: 10px;
   height: 35px;
   width: 183px;
   border: 1px solid grey;
   margin: 5px;
+}
+
+.new-folder {
+  display: none;
+}
+
+.show-input {
+  font-size: 14px;
+  padding-left: 10px;
+  height: 35px;
+  width: 183px;
+  border: 1px solid grey;
+  margin: 5px;
+  display: block;
 }
 
 .url-submit {
@@ -113,7 +130,7 @@ p {
   font-size: 14px;
   padding-left: 10px;
   height: 35px;
-  width: 275px;
+  width: 500px;
   border-radius: 3px;
   outline: none;
   border: 1px solid #ff0202;
@@ -121,6 +138,8 @@ p {
 }
 
 .folder-select {
+  display: flex;
+  align-items: center;
   padding: 5px;
 }
 .url-submit #url:focus,
@@ -133,16 +152,6 @@ p {
   cursor: pointer;
   border: 1px solid #4285F4;
 }
-
-/*input#add-folder {
-  font-size: 14px;
-  padding-left: 10px;
-  height: 35px;
-  width: 195px;
-  border: 1px solid grey;
-  border-radius: 3px;
-  margin: 5px;
-}*/
 
 /*=======================================
 >>>>>>>>  dropdown  <<<<<<<<
@@ -177,7 +186,6 @@ p {
   padding: 10px;
   text-transform: capitalize;
   list-style: none;
-
 }
 
 #dropdown2:hover,
@@ -186,24 +194,25 @@ p {
 }
 
 .show {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /*=======================================
 >>>>>>>>  ^^^^^  <<<<<<<<
 ========================================*/
 
-.url-submit #add {
+#add {
   height: 35px;
-  width: 100px;
-  border-radius: 3px;
+  width: 100%;
   border: none;
   margin: 0 10px 0 10px;
-  background-color: #EEEEEE;
+  background-color: #645AFF;
   font-size: 16px;
-  color: #272727;
+  color: white;
 }
 
-.url-submit #add:hover{
+#add:hover{
   cursor: pointer;
   background-color: #5d5c5c;
   color: white;
@@ -220,10 +229,6 @@ p {
   height: 100px;
   width: 100%;
 }
-
-/*.folder-filter {
-  border-bottom: 1px solid darkgrey;
-}*/
 
 .folder-header {
   display: flex;
@@ -264,6 +269,7 @@ p {
 select,
 input #addFolder {
   font-size: 16px;
+  height: 35px;
   text-transform: capitalize;
 }
 
