@@ -10,11 +10,9 @@
     JetFuel
   </title>
 </head>
-
 <body>
   <header>
     <div class="title">
-
       <span class="logo">
         <h1 class="jetfuel">Jetfuel</h1>
           <p>|</p>
@@ -31,12 +29,14 @@
               <input id="name" type="text" name="name" value="Name">
               <select id="select1" name="select">
               </select>
-              <input class="new-folder" type="text" name="new-folder" value="Enter folder name">
-              <!-- <button id="dropdown2" data-id="0">
-                Select A Folder
-              </button> -->
+              <div class="add-folder-container">
+                <input class="new-folder" type="text" name="new-folder" value="Enter folder name">
+                <button class="add-folder-submit" type="button" name="button">Add</button>
+              </div>
             </div>
-            <button id="add" type="button" name="button">Add</button>
+            <div class=add-container>
+              <button id="add" type="button" name="button">Add</button>
+            </div>
           </div>
         </div>
       </form>
@@ -46,19 +46,14 @@
     <div class="folder-dropdown">
       <img src="./assets/folder-icon.png" alt="folder icon">
       <select id="select2" name="select">
-
       </select>
     </div>
-
     <select id="sort" name="sort">
       <option value="true">acending</option>
       <option value="false">decending</option>
     </select>
-
   </div>
-
   <section class="cards">
-
   </section>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

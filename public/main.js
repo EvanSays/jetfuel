@@ -3,16 +3,24 @@ $(function() {
   fetchLinks();
 })
 
-$('#add-folder').click(() => {})
+$('.add-folder-submit').click(() => {
+  const inputVal = $('.new-folder')[0].value
+  postFolder(inputVal)
+  appendToSelects(inputVal)
+  $(".add-folder-container").toggleClass("add-folder-container-show")
+  $("#add").prop("disabled", false)
+})
 
 $('#select1').change((e)=> {
   const addSelected = $("#select1 option:selected")
   const createFolderDefault = 'create a folder'
   const createFolder = addSelected[0].innerText
   if(createFolder === createFolderDefault){
-    $(".new-folder").toggleClass("show-input")
+    $(".add-folder-container").toggleClass("add-folder-container-show")
+    $("#add").prop("disabled", true)
   } else {
-    $(".new-folder").removeClass("show-input")
+    $(".add-folder-container").removeClass("add-folder-container-show")
+    $("#add").prop("disabled", false)
   }
 })
 
@@ -37,8 +45,29 @@ $('#add').click(() => {
 
   postLink(name.val(), url.val(), folderId)
   $(".dropdown-content").toggleClass("show")
+
+  $('.cards').empty()
+  fetchFolders();
+  fetchLinks();
   }
 })
+
+const appendNewCards = (url, name, ) => {
+  const cards = $('.cards')
+  cards.append(`
+    <div
+      id="card"
+      class="card"
+      data-id=${link.id}
+      data-created-at=${link.created_at}
+      <div class="info">
+        <h2>${link.name}</h2>
+        <a href='/api/v1/links/${link.id}'>${link.short_url}</a>
+        <p>Added:${moment(link.created_at).format("MMM Do YY")}<p>
+        </div>
+      </div>
+      `)
+}
 
 $('#name').click((e) => {
   $(e.target).val('')
@@ -89,7 +118,6 @@ $(".folder-select").on('click', 'li', (e) => {
   $(".dropdown-content2").text(e.target.getAttribute('data-id'))
   $("#dropdown2").attr("data-id", e.target.getAttribute('data-id'))
   $("#dropdown2").text(e.target.getAttribute('data-name'))
-  // fetchFolders();
 })
 
 
@@ -111,13 +139,6 @@ const fetchLinks = (str) => {
   .catch(error => console.log(error))
 }
 
-// const fetchFolderId = () => {
-//   fetch('/api/v1/folders/1')
-//   .then(res => res.json())
-//   .then(folder => console.log('folder', folder))
-//   .catch(error => console.log(error))
-// }
-
 const fetchFolderLinks = (id, str) => {
   fetch(`/api/v1/folders/${id}/links`)
   .then(res => res.json())
@@ -125,23 +146,17 @@ const fetchFolderLinks = (id, str) => {
   .catch(error => console.log(error))
 }
 
-// const fetchLinkRedirect = () => {
-//   fetch('/api/v1/links/1')
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-// }
-
 /*=======================================
 >>>>>>>>  Post  <<<<<<<<
 ========================================*/
 
-const postFolder = () => {
+const postFolder = (name) => {
   fetch('/api/v1/folders', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({'name': 'Bands'})
+    body: JSON.stringify({'name': name})
   }).then(res => console.log(res))
 }
 
@@ -161,8 +176,7 @@ const postLink = (name, url, folderId) => {
 
 const setFolders = (array) => {
 
-  $('#select1').empty();
-  $('#select2').empty()
+  $('#select1, #select2').empty();
 
   $('#select1').prepend `
   <option>select a folder</option>
@@ -186,7 +200,6 @@ const setFolders = (array) => {
 }
 
 const setLinks = (array, str='true') => {
-
   const sorted = array.sort((a, b) => {
     if (a.updated_at > b.updated_at) {
       return 1
@@ -195,6 +208,9 @@ const setLinks = (array, str='true') => {
 
   const cards = $('.cards')
   cards.empty()
+
+  console.log(sorted);
+
   sorted.forEach(link => {
     if (str === 'true') {
 
@@ -210,7 +226,7 @@ const setLinks = (array, str='true') => {
           <div class="info">
             <h2>${link.name}</h2>
             <a href='/api/v1/links/${link.id}'>${link.short_url}</a>
-            <p>Added:${moment(link.created_at)}<p>
+            <p>Added:${moment(link.created_at).format("MMM Do YY")}<p>
             </div>
           </div>
           `)
@@ -227,7 +243,8 @@ const setLinks = (array, str='true') => {
           <div class="info">
             <h2>${link.name}</h2>
             <a href='/api/v1/links/${link.id}'>${link.short_url}</a>
-            <p>Added:${moment(link.created_at)}<p>
+            <p>Added: </p>
+            <p class="moment">${moment(link.created_at).format("MMM Do YYYY")}<p>
             </div>
           </div>
           `)
@@ -237,4 +254,10 @@ const setLinks = (array, str='true') => {
 
 const shortUrl = (url) => {
   return (url).toString(36)
+}
+
+const appendToSelects = (name) => {
+  $('#select1, #select2').append( `
+  <option>${name}</option>
+  `)
 }
