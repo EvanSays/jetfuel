@@ -3,27 +3,29 @@
 }
 
 body {
+  align-items: center;
+  background-color: #000;
   display: flex;
   flex-direction: column;
   font-family: 'Open Sans', sans-serif;
-  background-color: black;
 }
 
 header {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  border-bottom: 1px solid darkgrey;
 }
 
 h1 {
-  color: white;
+  color: #FFF;
 }
 
 h3 {
-  margin: 0px;
+  margin: 0;
 }
+
+
 /*=======================================
 >>>>>>>>  logo  <<<<<<<<
 ========================================*/
@@ -32,34 +34,38 @@ h1,
 p {
   margin: 0;
 }
-.logo{
-  display: flex;
-    justify-content: center;
-    align-items: center;
 
+.logo {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
+
 .logo p {
-  font-weight: 200;
+  color: #FFF;
   font-size: 70px;
-  color: white;
+  font-weight: 200;
 }
+
 .jetfuel {
   font-size: 60px;
   font-weight: 200;
 }
 
-.turbo{
+.turbo {
   font-size: 40px;
   font-weight: 400;
 }
+
+
 /*=======================================
 >>>>>>>>  title <<<<<<<<
 ========================================*/
 
 .title {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .dropdown {
@@ -67,47 +73,51 @@ p {
 }
 
 .dropdown #newbtn {
-  height: 30px;
-  width: 200px;
   background: #645AFF;
   border: none;
+  color: #FFF;
   font-size: 15px;
-  color: white;
-  margin: 50px 0 20px 0;
+  height: 30px;
+  margin: 50px 0 20px;
+  width: 200px;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
   background-color: #f9f9f9;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  display: none;
   min-width: 250px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
   padding: 5px;
+  position: absolute;
+  z-index: 1;
 }
 
 .dropdown #newbtn:hover {
+  animation-direction: alternate;
+  animation-duration: 1s;
+  animation-iteration-count: 2;
+  animation-name: color_change;
   cursor: pointer;
 }
 
-
 #name,
-.new-folder  {
-  font-size: 16px;
-  padding-left: 10px;
-  height: 35px;
-  width: 183px;
+.new-folder {
   border: none;
+  font-size: 16px;
+  height: 35px;
+  padding-left: 10px;
+  width: 183px;
 }
 
 .add-folder-submit {
-  height: 35px;
-  width: 100px;
   background-color: #645AFF;
   border: none;
+  color: #FFF;
   font-size: 16px;
-  color: white;
+  height: 35px;
+  width: 100px;
 }
+
 .add-folder-submit:hover {
   cursor: pointer;
 }
@@ -117,81 +127,85 @@ p {
 }
 
 .add-folder-container-show {
-  display: flex;
   align-items: center;
-  margin: 5px 0 10px 0;
+  display: flex;
+  margin: 5px 0 10px;
 }
 
 .url-submit {
-  display: flex;
   align-items: center;
+  display: flex;
   padding: 5px;
 }
 
 .url-submit #url {
+  background-color: #FFF;
+  border: none;
   font-size: 17px;
-  padding-left: 10px;
   height: 52px;
-  background-color: white;
-  width: 500px;
-      border: none;
-  /* border-radius: 3px; */
   outline: none;
-  /* border: 1px solid #ff0202; */
-  /*margin: 5px;*/
+  padding-left: 10px;
+  width: 500px;
 }
 
 .folder-select {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   margin: 0 0 10px 5px;
-  /*padding: 5px;*/
 }
+
 .url-submit #url:focus,
-.folder-select input:focus{
+.folder-select input:focus {
   border: 1px solid #4285F4;
 }
 
 .url-submit #url:hover,
 .folder-select input:hover {
-  cursor: pointer;
   border: 1px solid #4285F4;
+  cursor: pointer;
 }
+
+.turbo {
+  font-size: 40px;
+  font-weight: 400;
+}
+
 
 /*=======================================
 >>>>>>>>  dropdown  <<<<<<<<
 ========================================*/
+
 #dropdown2 {
-  height: 35px;
-  width: 200px;
-  border: none;
-  border-radius: 3px;
-  font-size: 15px;
-  color: black;
   border: 1px solid grey;
+  border-radius: 3px;
+  color: #000;
+  font-size: 15px;
+  height: 35px;
   text-align: start;
   text-transform: capitalize;
+  width: 200px;
 }
 
-.dropdown-content2  {
-  display: none;
-  position: absolute;
+.dropdown-content2 {
   background-color: #f9f9f9;
-  width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  padding: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  display: none;
   left: 219px;
+  padding: 5px;
+  position: absolute;
+  width: 200px;
+  z-index: 1;
 }
 
 .dropdown-content2 ul {
   list-style-type: none;
 }
+
 .dropdown-content2 li {
+  list-style: none;
   padding: 10px;
   text-transform: capitalize;
-  list-style: none;
 }
 
 #dropdown2:hover,
@@ -200,14 +214,17 @@ p {
 }
 
 .show {
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
   background-color: #3c3b3b;
+  display: flex;
+  flex-direction: column;
 }
+
+
 /*=======================================
 >>>>>>>>  ^^^^^  <<<<<<<<
 ========================================*/
+
 .add-container {
   display: flex;
   justify-content: center;
@@ -215,18 +232,22 @@ p {
 }
 
 #add {
+  background-color: #645AFF;
+  border: none;
+  color: #FFF;
+  font-size: 16px;
   height: 35px;
   width: 100%;
-  border: none;
-  background-color: #645AFF;
-  font-size: 16px;
-  color: white;
 }
 
-#add:hover{
+#add:hover {
+  animation-direction: alternate;
+  animation-duration: 1s;
+  animation-iteration-count: 2;
+  animation-name: color_change2;
+  background-color: #8078f3;
+  color: #FFF;
   cursor: pointer;
-  background-color: rgb(128, 120, 243);
-  color: white;
 }
 
 #add:disabled {
@@ -238,17 +259,17 @@ p {
 }
 
 .folder-menu {
-  display: flex;
   align-items: center;
-  margin-left: 120px;
+  display: flex;
   height: 100px;
-  width: 100%;
+  justify-content: flex-start;
+  width: 500px;
 }
 
 .folder-header {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 
 .folder-select img,
@@ -257,74 +278,65 @@ p {
 }
 
 .folder-dropdown {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .folder-dropdown select {
-  outline: none;
-  margin: 0 10px 0 10px;
-  width: 150px;
   height: 25px;
+  margin: 0 10px 0 0;
+  outline: none;
+  width: 150px;
 }
 
 .folder-dropdown select:hover {
-  cursor: pointer;
   border: 2px solid #4285F4;
+  cursor: pointer;
   outline: none;
-}
-
-.folder-dropdown img {
-  display: flex;
-  flex-direction: row;
-  width: 20px;
-  height: 20px;
-}
-
-#sort {
-  font-size: 16px;
-  height: 25px;
-  text-transform: capitalize;
 }
 
 input #addFolder {
   font-size: 16px;
   height: 25px;
-  text-transform: capitalize;
   margin-top: 5px;
+  text-transform: capitalize;
 }
 
+#select1 {
+  font-size: 16px;
+  height: 25px;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+#sort,
 #select2 {
   font-size: 16px;
   height: 25px;
   text-transform: capitalize;
+}
 
-}
-#select1 {
-  font-size: 16px;
-  height: 25px;
-  text-transform: capitalize;
-  margin-top: 10px;
-}
+
 /*=======================================
 >>>>>>>>  cards  <<<<<<<<
 ========================================*/
 
 .cards {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .card {
+  background-color: #FFF;
   display: flex;
-  justify-content: flex-start;
   height: 175px;
-  width: 500px;
+  justify-content: flex-start;
   margin: 10px;
-  background-color: white;
+  width: 500px;
 }
+
 .card h2,
 .card h3,
 .card h4 {
@@ -336,7 +348,7 @@ input #addFolder {
   overflow: hidden;
 }
 
-.card:hover{
+.card:hover {
   cursor: pointer;
 }
 
@@ -344,13 +356,24 @@ input #addFolder {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
   margin: 10px;
+  overflow: hidden;
 }
 
 .card h3 {
   font-size: 14px;
 }
+
 .card h4 {
   font-size: 12px;
+}
+
+@keyframes color_change {
+  from { background-color: #645AFF; }
+	to { background-color: #5ad5ff; }
+}
+
+@keyframes color_change2 {
+  from { background-color: #645AFF; }
+	to { background-color: rgb(243, 120, 228); }
 }

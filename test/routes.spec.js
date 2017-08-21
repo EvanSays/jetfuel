@@ -16,8 +16,6 @@ describe('Client Routes', () => {
     chai.request(server).get('/').end((err, response) => {
       response.should.have.status(200);
       response.should.be.html;
-      // NOTE: dig in find a string?
-      // response.res.text.should.equal('We\'re going to test all the routes!');
       done();
     });
   });
@@ -30,15 +28,6 @@ describe('Client Routes', () => {
 });
 
 describe('API Routes', () => {
-  // before((done) => {
-  //   database.migrate.rollback().then(() => {
-  //     database.migrate.latest().then(() => {
-  //       database.seed.run().then(() => {
-  //         done();
-  //       })
-  //     });
-  //   });
-  // });
   beforeEach((done) => {
     database.migrate.rollback().then(() => {
       database.migrate.latest().then(() => {
@@ -89,11 +78,11 @@ describe('API Routes', () => {
   })
   describe('POST /api/v1/folders', () => {
     it('should create a new folder', (done) => {
-      chai.request(server).post('/api/v1/folders'). // Notice the change in the verb
-      send({ // Here is the information sent in the body or the request
+      chai.request(server).post('/api/v1/folders').
+      send({
         "name": 'Search Engines'
       }).end((err, res) => {
-        res.should.have.status(201); // Different status here
+        res.should.have.status(201);
         res.body.should.be.a('object');
         chai.request(server).get('/api/v1/folders').end((err, res) => {
           res.should.have.status(200);
@@ -127,14 +116,14 @@ describe('API Routes', () => {
   describe('POST /api/v1/links', () => {
     it('should create a new link', (done) => {
       chai.request(server)
-      .post('/api/v1/links'). // Notice the change in the verb
-      send({ // Here is the information sent in the body or the request
+      .post('/api/v1/links').
+      send({
         "name": "Tortilla Soup",
         "orig_url": "http://mytortillasoup.com/tasty/break",
         "short_url": "http://jetfuelcom/ajIjdsif",
         "folder_id": 1
       }).end((err, res) => {
-        res.should.have.status(201); // Different status here
+        res.should.have.status(201);
         res.body.should.be.a('object');
         chai.request(server).get('/api/v1/links').end((err, res) => {
           res.should.have.status(200);
@@ -196,7 +185,6 @@ describe('API Routes', () => {
       chai.request(server)
       .get('/api/v1/folders/1/links')
       .end((err, res) => {
-        console.log('folders-----------', res.body);
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a('array');
