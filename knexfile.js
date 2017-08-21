@@ -1,5 +1,3 @@
-// Update with your config settings.
-
 module.exports = {
 
   development: {
@@ -42,7 +40,8 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || 'postgres://localhost/jetfueltest',
+    connection: process.env.DATABASE_URL ||
+    'postgres://localhost/jetfueltest',
     useNullAsDefault: true,
     migrations: {
       directory: './db/migrations'

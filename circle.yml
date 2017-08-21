@@ -7,6 +7,6 @@ machine:
       DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
 deployment:
   production:
-    branch: em-staging
+    branch: master
     heroku:
       appname: jetfuelturbo
