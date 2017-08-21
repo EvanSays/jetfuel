@@ -1,18 +1,19 @@
 $(function() {
   fetchFolders();
   fetchLinks();
-  // fetchFolderId();
-  // fetchFolderLinks();
-  // postFolder();
-  // postLink();
-  // console.log(shortid.generate())
 })
 
 $('#add-folder').click(() => {})
 
 $('#select1').change((e)=> {
-  const addSelected = $("#select2 option:selected")
-  console.log(addSelected);
+  const addSelected = $("#select1 option:selected")
+  const createFolderDefault = 'create a folder'
+  const createFolder = addSelected[0].innerText
+  if(createFolder === createFolderDefault){
+    $(".new-folder").toggleClass("show-input")
+  } else {
+    $(".new-folder").removeClass("show-input")
+  }
 })
 
 $('#add').click(() => {
@@ -28,7 +29,6 @@ $('#add').click(() => {
 
   const folderId = dropdown[0].getAttribute('data-id')
 
-
   if (url.val() != urlDefualt &&
       name.val() != nameDefault &&
       url.val() != '' &&
@@ -37,7 +37,6 @@ $('#add').click(() => {
 
   postLink(name.val(), url.val(), folderId)
   $(".dropdown-content").toggleClass("show")
-
   }
 })
 
@@ -47,7 +46,10 @@ $('#name').click((e) => {
 
 $('#url').click((e) => {
   $(e.target).val('')
+})
 
+$('.new-folder').click((e) => {
+  $(e.target).val('')
 })
 
 $('#newbtn').click(() => {
@@ -109,12 +111,12 @@ const fetchLinks = (str) => {
   .catch(error => console.log(error))
 }
 
-const fetchFolderId = () => {
-  fetch('/api/v1/folders/1')
-  .then(res => res.json())
-  .then(folder => console.log('folder', folder))
-  .catch(error => console.log(error))
-}
+// const fetchFolderId = () => {
+//   fetch('/api/v1/folders/1')
+//   .then(res => res.json())
+//   .then(folder => console.log('folder', folder))
+//   .catch(error => console.log(error))
+// }
 
 const fetchFolderLinks = (id, str) => {
   fetch(`/api/v1/folders/${id}/links`)
@@ -123,11 +125,11 @@ const fetchFolderLinks = (id, str) => {
   .catch(error => console.log(error))
 }
 
-const fetchLinkRedirect = () => {
-  fetch('/api/v1/links/1')
-  .then(res => res.json())
-  .then(data => console.log(data))
-}
+// const fetchLinkRedirect = () => {
+//   fetch('/api/v1/links/1')
+//   .then(res => res.json())
+//   .then(data => console.log(data))
+// }
 
 /*=======================================
 >>>>>>>>  Post  <<<<<<<<

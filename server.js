@@ -74,8 +74,8 @@ app.route('/api/v1/links')
 
 app.get('/api/v1/folders/:id', (req, res) => {
   database('folders')
-  .where('id', req.params.id).
-  select()
+  .where('id', req.params.id)
+  .select()
     .then(folders => {
       if (folders.length) {
         res.status(200).json(folders);
@@ -91,26 +91,29 @@ app.get('/api/v1/folders/:id', (req, res) => {
 });
 
 app.get('/api/v1/folders/:id/links', (req, res) => {
-  database('links').where('folder_id', req.params.id)
-  .select()
-    .then(links => {
-      res.status(200).json(links)
-    })
-    .catch(error => {
-      res.status(500).json({ error })
-    })
-});
-
-app.get('/api/v1/links/:id', (req, res) => {
-  database('links').where('id', req.params.id)
+  database('links')
+  .where('folder_id', req.params.id)
   .select()
   .then(links => {
-    res.status(302).redirect(links[0].orig_url)
+    console.log('SERVER', links);
+    res.status(200).json(links)
   })
   .catch(error => {
     res.status(500).json({ error })
   })
-})
+});
+
+// app.get('/api/v1/links/:id', (req, res) => {
+//   database('links')
+//   .where('id', req.params.id)
+//   .select()
+//   .then(links => {
+//     res.status(302).redirect(links[0].orig_url)
+//   })
+//   .catch(error => {
+//     res.status(500).json({ error })
+//   })
+// })
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
