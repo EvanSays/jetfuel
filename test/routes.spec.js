@@ -129,7 +129,7 @@ describe('API Routes', () => {
         res.should.have.status(201);
         res.body.should.be.a('object');
         chai.request(server).get('/api/v1/links').end((err, res) => {
-          res.should.have.status(500);
+          res.should.have.status(200);
           res.should.be.json;
           res.body.should.be.a('array');
           res.body.length.should.equal(3);
