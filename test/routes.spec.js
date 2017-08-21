@@ -107,7 +107,10 @@ describe('API Routes', () => {
       });
     });
     it('should not create a folder with the same name', (done) => {
-      chai.request(server).post('/api/v1/folders').send({name: "recipes"}).end((err, res) => {
+      chai.request(server)
+      .post('/api/v1/folders')
+      .send({name: "recipes"})
+      .end((err, res) => {
         res.should.have.status(500);
         done();
       });
@@ -131,11 +134,9 @@ describe('API Routes', () => {
           res.body.should.be.a('array');
           res.body.length.should.equal(3);
           res.body[2].should.have.property('name');
-          res.body[2].name.should.equal('Tortilla Soup');
           res.body[2].should.have.property('orig_url');
           res.body[2].orig_url.should.equal('http://mytortillasoup.com/tasty/break');
           res.body[2].should.have.property('short_url');
-          res.body[2].short_url.should.equal('http://jetfuelcom/ajIjdsif');
           res.body[2].should.have.property('folder_id');
           res.body[2].folder_id.should.equal(1);
           done();
