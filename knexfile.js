@@ -2,15 +2,15 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL + `?ssl=true`,
+    connection: `${process.env.DATABASE_URL  }?ssl=true`,
     useNullAsDefault: true,
     migrations: {
-      directory: './db/migrations'
+      directory: './db/migrations',
     },
     seeds: {
-      directory: './db/seeds/dev'
+      directory: './db/seeds/dev',
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
   },
 
   staging: {
@@ -18,24 +18,24 @@ module.exports = {
     connection: {
       database: 'my_db',
       user: 'username',
-      password: 'password'
+      password: 'password',
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      tableName: 'knex_migrations',
+    },
   },
 
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL + `?ssl=true`,
+    connection: `${process.env.DATABASE_URL  }?ssl=true`,
     migrations: {
-      directory: './db/migrations'
+      directory: './db/migrations',
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
   },
 
   test: {
@@ -44,11 +44,11 @@ module.exports = {
     'postgres://localhost/jetfueltest',
     useNullAsDefault: true,
     migrations: {
-      directory: './db/migrations'
+      directory: './db/migrations',
     },
     seeds: {
-      directory: './db/test/seeds'
-    }
-  }
+      directory: './db/test/seeds',
+    },
+  },
 
 };
