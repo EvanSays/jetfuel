@@ -62,5 +62,5 @@ exports.seed = (knex, Promise) => {
       // Inserts seed entries
       return Promise.all(folderPromises);
     })
-    .catch(error => console.log(`Error seeding data: ${error}`))
+  .catch(error => console.log(`Error seeding data: ${error}`))
 };
