@@ -96,7 +96,6 @@ app.get('/api/v1/folders/:id/links', (req, res) => {
     .where('folder_id', req.params.id)
     .select()
     .then((links) => {
-      console.log('SERVER', links);
       res.status(200).json(links);
     })
     .catch((error) => {
