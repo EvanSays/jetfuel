@@ -47,7 +47,6 @@ describe('API Routes', () => {
       res.body.should.be.a('array');
       res.body.length.should.equal(1);
       res.body[0].should.have.property('name');
-      res.body[0].name.should.equal('recipes');
       res.body[0].should.have.property('created_at');
       res.body[0].should.have.property('updated_at');
       done();
@@ -92,7 +91,6 @@ describe('API Routes', () => {
           res.body[1].should.have.property('id');
           res.body[1].id.should.equal(2);
           res.body[1].should.have.property('name');
-          res.body[1].name.should.equal('Search Engines');
           res.body[1].should.have.property('created_at');
           res.body[1].should.have.property('updated_at');
           done();
@@ -129,13 +127,12 @@ describe('API Routes', () => {
         res.should.have.status(201);
         res.body.should.be.a('object');
         chai.request(server).get('/api/v1/links').end((err, res) => {
-          res.should.have.status(500);
+          res.should.have.status(200);
           res.should.be.json;
           res.body.should.be.a('array');
           res.body.length.should.equal(3);
           res.body[2].should.have.property('name');
           res.body[2].should.have.property('orig_url');
-          res.body[2].orig_url.should.equal('http://mytortillasoup.com/tasty/break');
           res.body[2].should.have.property('short_url');
           res.body[2].should.have.property('folder_id');
           res.body[2].folder_id.should.equal(1);
@@ -165,7 +162,6 @@ describe('API Routes', () => {
           res.should.be.json;
           res.body.should.be.a('array');
           res.body[0].should.have.property('name');
-          res.body[0].name.should.equal('recipes');
           res.body[0].should.have.property('created_at');
           res.body[0].should.have.property('updated_at');
         done()
