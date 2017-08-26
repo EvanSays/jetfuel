@@ -5,11 +5,12 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 const server = require('../server');
 
-chai.use(chaiHttp);
 
 const enviroment = process.env.NODE_ENV || 'development';
 const configuration = require('../knexfile')[enviroment];
 const database = require('knex')(configuration);
+
+chai.use(chaiHttp);
 
 describe('Client Routes', () => {
   it('should return the homepage with text', (done) => {
@@ -29,9 +30,12 @@ describe('Client Routes', () => {
 
 describe('API Routes', () => {
   beforeEach((done) => {
-    database.migrate.rollback().then(() => {
-      database.migrate.latest().then(() => {
-        database.seed.run().then(() => {
+    database.migrate.rollback()
+    .then(() => {
+      database.migrate.latest()
+      .then(() => {
+        database.seed.run()
+        .then(() => {
           done();
         })
       });
@@ -62,7 +66,6 @@ describe('API Routes', () => {
         res.body.should.be.a('array');
         res.body.length.should.equal(2);
         res.body[0].should.have.property('name');
-        res.body[0].name.should.equal('Baking Bread');
         res.body[0].should.have.property('orig_url');
         res.body[0].orig_url.should.equal('http://hugechallah.com/tasty/break');
         res.body[0].should.have.property('short_url');
@@ -189,7 +192,6 @@ describe('API Routes', () => {
         res.body[0].should.have.property('id');
         res.body[0].id.should.equal(1);
         res.body[0].should.have.property('name');
-        res.body[0].name.should.equal('Baking Bread');
         res.body[0].should.have.property('created_at');
         res.body[0].should.have.property('updated_at');
       done()
