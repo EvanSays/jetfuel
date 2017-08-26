@@ -67,9 +67,7 @@ describe('API Routes', () => {
         res.body.length.should.equal(2);
         res.body[0].should.have.property('name');
         res.body[0].should.have.property('orig_url');
-        res.body[0].orig_url.should.equal('http://hugechallah.com/tasty/break');
         res.body[0].should.have.property('short_url');
-        res.body[0].short_url.should.equal('http://breakbread.com/ajIjdsif');
         res.body[0].should.have.property('folder_id');
         res.body[0].folder_id.should.equal(1);
         res.body[0].should.have.property('updated_at');
